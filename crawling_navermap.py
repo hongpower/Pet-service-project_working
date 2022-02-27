@@ -12,7 +12,7 @@ url = 'https://map.naver.com/v5/search/'
 service = webdriver.chrome.service.Service('../drivers/chromedriver.exe')
 driver = webdriver.Chrome(service=service)
 
-driver.implicitly_wait(0.5)
+driver.implicitly_wait(1)
 driver.get(url)
 
 sleep(1.5)
@@ -73,8 +73,12 @@ for page_num in pagebar[1:-1]:
     cnt = -1
 
     # 해당 페이지 내 모든 섹션
-    shops = driver.find_elements(By.CSS_SELECTOR,'ul > li > div:nth-last-child(2) > a')
+    shops = driver.find_elements(By.CSS_SELECTOR,'ul > li > div:nth-last-child(2) > a:nth-child(1)')
     print(len(shops))
+    # print(len(driver.find_elements(By.CSS_SELECTOR, 'ul')))
+    # print(len(driver.find_elements(By.CSS_SELECTOR,'ul > li')))
+    # print(len(driver.find_elements(By.CSS_SELECTOR, 'ul > li > div:nth-last-child(2)')))
+    # print(len(driver.find_elements(By.CSS_SELECTOR, 'ul > li > div:nth-last-child(2) > a')))
     for shop in shops:
         temp = dict()
         cnt += 1
